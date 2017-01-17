@@ -78,19 +78,24 @@ public class TeleOP
         if(clawLeftUp == 1 && leftClawPos < 1.0) //checks if left trigger is pressed and increments position of left claw
         {
             leftClawPos += INCREMENT;
+            rightClawPos +=INCREMENT;
         }
         if(clawRightUp == 1 && rightClawPos < 1.0)//checks if right trigger is pressed and increments position of right claw
         {
             rightClawPos +=INCREMENT;
+            leftClawPos += INCREMENT;
         }
         if(clawLeftDown && leftClawPos > 0)//checks if left bumper is pressed and decreases position of left claw
         {
             leftClawPos -= INCREMENT;
+            rightClawPos -= INCREMENT;
         }
         if(clawRightDown && rightClawPos > 0)//checks if right bumper is pressed and decreases position of right claw
         {
             rightClawPos -= INCREMENT;
+            leftClawPos -= INCREMENT;
         }
+        
         leftMotor.setPower(leftY); //sets power of wheel motors based on position of joysticks
         rightMotor.setPower(rightY);
 

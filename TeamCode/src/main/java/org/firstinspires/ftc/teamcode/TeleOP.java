@@ -1,12 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class TeleOP
+@TeleOp(name = "Pushbot: Teleop",group="Pushbot")
+public class TeleOP extends OpMode
 {
 
     DcMotor leftMotor;
@@ -15,9 +18,9 @@ public class TeleOP
     Servo leftClaw;
     Servo rightClaw;
 
-    HardwareMap hwMap;
+    //HardwareMap hwMap;
 
-    Gamepad gamepad1;
+    //Gamepad gamepad1;
 
     float rightClawPos = 0.5f;
     float leftClawPos = 0.5f;
@@ -29,16 +32,16 @@ public class TeleOP
     static final double MIN_POS     =  0.0;     // Minimum rotational position
 
     //float servoPos = 0.5;
-    //@Override
-    public void init(HardwareMap ahwMap) //method sets initial motor configuration
+    @Override
+    public void init() //method sets initial motor configuration
     {
-        hwMap = ahwMap;
+        //hwMap = ahwMap;
         //initialize wheels and arm to dc motors and claw to servos
-        leftMotor = hwMap.dcMotor.get("left_drive");
-        rightMotor = hwMap.dcMotor.get("right_drive");
-        armMotor = hwMap.dcMotor.get("left_arm");
-        leftClaw = hwMap.servo.get("left_hand");
-        rightClaw = hwMap.servo.get("right_hand");
+        leftMotor = hardwareMap.dcMotor.get("left_drive");
+        rightMotor = hardwareMap.dcMotor.get("right_drive");
+        armMotor = hardwareMap.dcMotor.get("left_arm");
+        leftClaw = hardwareMap.servo.get("left_hand");
+        rightClaw = hardwareMap.servo.get("right_hand");
 
         
         //set directions of the dc motors and position of claw
@@ -95,7 +98,7 @@ public class TeleOP
             rightClawPos -= INCREMENT;
             leftClawPos -= INCREMENT;
         }
-        
+
         leftMotor.setPower(leftY); //sets power of wheel motors based on position of joysticks
         rightMotor.setPower(rightY);
 
